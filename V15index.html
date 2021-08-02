@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <title>Montreal Housing Data Site</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="MTL19style.css">
+</head>
+<body>
+<style>
+  .mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+</style>
+<div id='map'></div>
+
+<div id="titlecontainer", style = "position:relative; left:350px; top:25px">
+  <h1>Mapping the Island</h1>
+</div>
+
+<div id="legend", style="position:absolute; left: 525px; top: 125px; width:260px; height:125px; background-color: rgb(255, 255, 255); border:1px solid #000; padding: 15px 10px 10px 15px;"><strong>Data to Exlpore</strong> 
+  <dl>
+    <dt class="red"></dt>
+    <dd>
+      <a href="MTL19index.html">Rent Prices</a>
+    </dd>
+    <br>
+    <dt class="green"></dt>
+    <dd>
+      <a href="V19index.html">Vacancy Rates</a>
+    </dd>
+    <br>
+    <dt class="blue"></dt>
+  <dd>
+      <a href="MTLRCindex.html">Rent Percent Increase Over Time</a>
+  </dd>
+  <br>
+  <dt class="yellow"></dt>
+  <dd>
+    <a href="VCindex.html">Vacancy Rate Change Over Time</a>
+</dd>
+  </dl>
+</div>
+
+<div id="key", style="position:absolute; left: 1200px; top: 425px; width:180px; height:165px; background-color: rgb(255, 255, 255); border:1px solid #000; padding: 15px 10px 10px 15px;"><strong>Average vacancy rates</strong>
+  <dl>
+    <dt class="vone"></dt>
+    <dd>under 2 % vacancy</dd>
+    <br>
+    <dt class="vtwo"></dt>
+    <dd>2% - 3% vacancy</dd>
+    <br>
+    <dt class="vthree"></dt>
+    <dd>3% - 4% vacancy</dd>
+    <br>
+    <dt class="vfour"></dt>
+    <dd>4% - 5% vacancy</dd>
+    <br>
+    <dt class="vfive"></dt>
+    <dd>5% - 6% vacancy</dd>
+    <br>
+    <dt class="vsix"></dt>
+    <dd>6% - 7% vacancy</dd>
+    <br>
+    <dt class="vseven"></dt>
+    <dd>over 7% vacancy</dd>
+  </dl>
+</div>
+
+<div id="years", style="position:absolute; left: 870px; top: 125px; width: 38px; height: 90px; background-color: rgb(255, 255, 255); border:1px solid #000; padding: 10px 10px 10px 10px;">
+  <dd>
+    <a href="V19index.html">2019</a>
+  </dd>
+  <dd>
+    <a href="V18index.html">2018</a>
+  </dd>
+  <dd>
+    <a href="V17index.html">2017</a>
+  </dd>
+  <dd>
+    <a href="V16index.html">2016</a>
+  </dd>
+  <dd>
+    <a href="V15index.html">2015</a>
+  </dd>
+</div>
+
+<div id="explainer", style="position:absolute; left: 40px; top: 125px; width:400px; height:300px; background-color: rgb(255, 255, 255); border:1px solid #000; padding: 15px 15px 15px 15px;">
+  <strong>The Housing Situation in Montreal</strong>
+  <p>It is getting more expensive to rent an apartment in Montreal. Rental rates are increasing, while vacancy rates appear to be changing in response to the pandemic. According to the Canadian Mortgage and Housing Corporation, the average rent was up 4.2 percent in 2020 at an $891 per month average. The vacancy rate increased to 2.7 percent in 2020 from 1.5 percent in 2019. Housing advocates across the city and province say there needs to be more control over landlord’s rent increases to keep housing affordable. The Tribunal administratif du logement reported a decrease in the number of appeals and complaints between tenants and landlords introduced in 2020.</p>
+  <button id="housingBtn">Learn more</button>
+  <div id="housingModal" class="modal">
+    <div class="modal-content-housing">
+      <span id="housingSpan" class="close">&times;</span>
+      <h3>The Housing Situation in Montreal</h3>
+      <p>It is getting more expensive to rent an apartment in Montreal. Rental rates are increasing, while vacancy rates appear to be changing in response to the pandemic. According to the Canadian Mortgage and Housing Corporation (CMHC), the average rent was up 4.2 percent in 2020 at an $891 per month average across the island. It also reported the vacancy rate increased to 2.7 percent in 2020 from 1.5 percent the year before.</p>
+      <p>Housing advocates across the city and province of Quebec say there needs to be more control over landlord’s rent increases to keep housing affordable. Olivia Dumas works with the Regroupement des comités logement et associations de locataires du Québec (RCLALQ), a coalition of housing committees which advocates for tenants rights across the province. She said they’re seeing an unprecedented number of calls seeking their services. Dumas attributes this to rent increases and lack of available housing that has been growing over the past few years.</p>
+      <p>“In the city of Montreal there is an awareness that this is happening,” she said “There is a housing crisis and it has been spoken about and denounced.”</p>
+      <p>Dumas said that the reason she sees rental prices going up is real estate speculation. She said she observed low interest rates which meant people who can't necessarily afford to buy a property do and then transfer the burden of the price onto the tenants by charging higher rents. The Quebec Landlord Association was contacted to comment on this and did not respond but Dumas said her claim was supported by the fact that most of the cases being opened at the Tribunal administratif du logement (TAL) come from new owners trying to evict or sharply increase rent.</p>
+      <p>In a document received through an Access to Information request, the TAL reported a decrease in Montreal in the number of appeals and complaints between tenants and landlords introduced in 2020 from the previous two years. Of the 27,249 requests made to the TAL in 2020, 4,382 were submitted by tenants and 11,186 were submitted by landlords. Eleven thousand one hundred and thirty nine more were made for non-payment of rent and 542 were qualified as relaunched cases where the submitter was not specified. The TAL was also contacted to comment but declined to do an interview.</p>
+      <p>Dumas also said she sees landlords raising the price on rent because there is less housing available.</p>
+      <p>“And so when there’s less housing available, landlords feel like they can increase the rent,” she said. “Because when something is in demand and they have all these people lining up to see an apartment, why not jack up the price?”</p>
+      <p>While the RCLALQ may see there being more of a demand for housing from anecdotal evidence, the CMHC reported that vacancy in Montreal actually increased last year. Lukas Jasmin-Tucci, a senior analyst in economics for the CMHC, said that this increase could be attributed to the pandemic.</p>
+      <p>“Many of the rental properties in the city, particularly in the central areas, were rented by students who didn’t come to Montreal this year because of COVID,” he said.</p>
+      <p>Jasmin-Tucci also pointed out that while the city was locked down, many people left to avoid the restrictions which were stricter in the metropolis. This is something Dumas also highlighted as going on for a few years, as renters leave cities and flock to the suburbs to avoid the rising rents.</p>
+      <p>The CMHC publishes data about the rental market in their annual <a href="https://www.cmhc-schl.gc.ca/en/professionals/housing-markets-data-and-research/market-reports/rental-market-reports-major-centres">Rental Market Report</a>, as well as its <a href="https://www.cmhc-schl.gc.ca/en/professionals/housing-markets-data-and-research/housing-data/data-tables/rental-market/centre-level-data-tables">Rental Market Survey Reliability Tables</a>, where data can be broken down by neighbourhood for centres of more than 10,000 people. This data is collected by surveying a random sampling of building owners on vacancy, rent price and turn-over rate of their units. The publicly available documentation of this data goes back to 2014.</p>
+      <p>The RCLALQ also performed their own <a href="https://rclalq.qc.ca/wp-content/uploads/2020/06/La-flamb%C3%A9e-des-loyersVF.pdf">study</a> where they scraped the website Kijiji between February and May 2020 for all its housing ads showing how expensive units were being advertised as online. From those numbers it calculated that the average total cost to rent an apartment in Montreal was $1258 per month, for a 5 ½-room unit it was $1563 per month and for a studio it was $935 per month. According to its 2020 rental market report, the CMHC calculated the average total cost to rent an apartment in Montreal was $891 per month, for a 5 ½ room unit it was $1112 per month and for a studio it was $703 per month.</p>
+      <p>These sets of data were collected differently which is why they yield different results. Jasmin-Tucci said they rely on the word of the survey’s respondents and since the selection of the sample is random the results could be less consistent from year to year. The CMHC data does say that rent in Montreal is increasing, by 4.2 percent on average, and the RCLALQ performed its same <a href="https://rclalq.qc.ca/wp-content/uploads/2021/06/Les-loyers-explosent.pdf">study</a> of Kijiji ads for 2021 and found rent had increased by 8 percent.</p>
+      <p>The TAL has a <a href="https://www.tal.gouv.qc.ca/fr/calcul-pour-la-fixation-de-loyer/outil-de-calcul">tool</a> to determine what it sees to be a reasonable rent increase between yearly leases. This tool takes into account whether the building has any non-residential properties, the amount of tax the owner has paid on the building compared to the year before, as well as whatever it costs the owner to do repairs and maintain the utilities. This means rent increases can vary between properties. In an example <a href="https://www.tal.gouv.qc.ca/sites/default/files/Exemple_2021_VA.pdf">calculation</a> for 2021 the TAL provides, in a residential property with three units, where the owner covers electricity, maintenance and management and received $1300 worth of repairs, a unit which was rented for $750 per month and received $1000 worth of repairs should receive a $13 per month increase for the next year, 1.7 percent.</p>
+    </div>
+  </div>
+</div>
+
+<div id="methodology", style="position:absolute; left: 40px; top: 475px; width:400px; height:180px; background-color: rgb(255, 255, 255); border:1px solid #000; padding: 15px 15px 15px 15px;">
+  <strong>Methodology</strong>
+  <p>This site was generated using data from <a href="https://www.cmhc-schl.gc.ca/en/professionals/housing-markets-data-and-research/housing-data/data-tables/rental-market/centre-level-data-tables">Canadian Mortgage and Housing Corporation’s</a> Rental Market Survey. This data is categorized by number of bedrooms, followed by a “total” category which the CMHC qualifies as their average. To show change over time, the “total” category was used for these maps.</p>
+  <button id="methodBtn">Learn more</button>
+  <div id="methodModal" class="modal">
+    <div class="modal-content-method">
+      <span id="methodSpan"class="close">&times;</span>
+      <h3>Methodology</h3>
+      <p>The data used to generate this site comes from the <a href="https://www.cmhc-schl.gc.ca/en/professionals/housing-markets-data-and-research/housing-data/data-tables/rental-market/centre-level-data-tables">Canadian Mortgage and Housing Corporation</a> Rental Market Survey Reliability Tables for Montreal between 2019 and 2015. This data is categorized by number of bedrooms, followed by a “total” category which the CMHC qualifies as their average. To show change over time, the data from the “total” category was used to create these maps.</p>
+      <p>The goal when creating these maps was to show how the rental situation in Montreal has changed over a span of five years and how those changes have been felt differently in different neighbourhoods. The Rental Market Survey Reliability Tables were used because they break down this information by neighbourhood, but there has yet to be neighbourhood-specific data published to show changes between 2019 and 2020. </p>
+      <p>The CMHC collects this data by posing a survey to a random sample of building owners, which is why the data from these tables might report different values than data collected from housing ads online. When they do not receive enough responses for a certain category, or the data is spread over too wide a range, its results are considered inconclusive and this section is left empty in the table. For the maps you see on this site, when there was an empty section for that piece of data in the CMHC’s table, the neighborhood is coloured black and the pop-up reports “No Data.”</p>
+      <p>The housing situation in Montreal was illustrated using two categories, rent prices (how much housing costs) and vacancy rates (how much housing is available). To show change over time for rent prices, a percent increase was calculated using a formula that calculated the difference between the 2015 rent and 2019 rent and then that value was divided by the original 2015 rent. Since vacancy rates changed in different directions over time (with most increasing and some decreasing) in certain neighbourhoods and there were a significant collection of vacancy rate categories that were inconclusive for 2019 and 2018, a simple difference between the most recent data and 2015 data was calculated to represent how much vacancy was estimated to have decreased over the period represented.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const housing = {
+    modal: document.getElementById("housingModal"),
+    btn: document.getElementById("housingBtn"),
+    span: document.getElementById("housingSpan")
+  }
+
+  housing.btn.onclick = function () {
+    housing.modal.style.display = "block";
+  }
+
+  housing.span.onclick = function () {
+    housing.modal.style.display = "none";
+  }
+
+  const method = {
+    modal: document.getElementById("methodModal"),
+    btn: document.getElementById("methodBtn"),
+    span: document.getElementById("methodSpan")
+  }
+
+  method.btn.onclick = function () {
+    method.modal.style.display = "block";
+  }
+
+  method.span.onclick = function () {
+    method.modal.style.display= "none"
+  }
+
+  window.onclick = function(event) {
+    if (event.target == housing.modal || event.target == method.modal) {
+      housing.modal.style.display = "none";
+      method.modal.style.display = "none";
+    }
+  }
+</script>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ3dlbnJvbGV5IiwiYSI6ImNrbjF6cnQ2bjBjbXgyb3RlY3ExdmkxYjgifQ.Vx6BiX2DhPgkhrEJ6GBleQ';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/gwenroley/ckpiqmvy125ye17qqodiyzqju',
+  center: [-73.8500, 45.5600],
+  zoom: 10
+});
+
+map.on('load', function () {
+  map.addSource('states', {
+    'type': 'geojson',
+    'data': 'https://raw.githubusercontent.com/gwenroley/MTL-geojson/main/features.geojson',
+    'generateId': true,
+  });
+
+  map.addLayer({
+    'id': 'state-fills',
+    'type': 'fill',
+    'source': 'states',
+    'layout': {},
+    'paint': {
+      'fill-color': '#000000',
+      'fill-opacity': [
+        'case',
+        ['boolean', ['feature-state', 'hover'], false],
+        1,
+        0
+      ]
+    }
+  });
+  
+  map.addLayer({
+     'id': 'state-borders',
+     'type': 'line',
+     'source': 'states',
+     'layout': {},
+     'paint': {
+       'line-color': '#000000',
+       'line-width': 1
+      }
+    });
+  
+
+  let hoveredStateId = null;
+  
+  var popup = new mapboxgl.Popup ({
+    closeButton: false,
+    closeOnClick: false
+  });
+  
+  map.on('mousemove', 'state-fills', (e) => {
+    if (e.features.length > 0) {
+      if (hoveredStateId !== null) {
+        popup.setLngLat(e.lngLat).setHTML('<strong>' + e.features[0].properties.NOM + '</strong>' + '<br>' + e.features[0].properties.VAC15).addTo(map)
+        map.setFeatureState({ 
+          source: 'states', 
+          id: hoveredStateId
+        },{ 
+          hover: false
+        });
+      }
+      hoveredStateId = e.features[0].id;
+      popup.setLngLat(e.lngLat).setHTML('<strong>' + e.features[0].properties.NOM + '</strong>' + '<br>' + e.features[0].properties.VAC15).addTo(map)
+      map.setFeatureState({ 
+        source: 'states', 
+        id: hoveredStateId
+      }, {
+        hover: true
+      });
+    }
+  });
+  
+  map.on('mouseleave', 'state-fills', () => {
+    if (hoveredStateId !== null) {
+      map.setFeatureState(
+        { source: 'states', id: hoveredStateId },
+        { hover: false }
+        );
+      popup.remove()
+      }
+      hoveredStateId = null;
+    });
+});
+
+map.on('load', function () {
+  map.addSource('places', {
+    'type': 'geojson',
+    'data': {
+      'type': 'FeatureCollection',
+      'features': [
+        {
+          'type': 'Feature',
+          'properties':{
+            'description': '<strong>Moving Day in Hochelaga-Maisonneuve</strong><p>The face of Hochelaga-Maisonneuve is changing. As is the case across the city of Montreal, on July 1 the neighbourhood was shaken up by the traditional day when leases expire and renters changing apartments move their belongings. <a href="hochelagaphotoessay.html">Click here to see the moving day photo essay.</a></p>'
+          },
+          'geometry':{
+            'type':'Point',
+            'coordinates':[-73.5448, 45.5436]
+          }
+        },
+
+        {
+          'type': 'Feature',
+          'properties':{
+            'description': '<strong>Housing crisis accelerating in Rosemont–La-Petite-Patrie</strong><p>Rents have increased steadily in this neighbourhood over the past five years and this is causing many residents to leave. <a href="articletemplate.html">Click here to learn more.</a></p>'
+          },
+          'geometry':{
+            'type':'Point',
+            'coordinates':[-73.6015, 45.5378]
+          }
+        }
+      ]
+    }
+  });
+  map.addLayer({
+    'id':'places',
+    'type': 'circle',
+    'source': 'places',
+    'paint':{
+      'circle-color': '#4264fb',
+      'circle-radius': 6,
+      'circle-stroke-width': 2,
+      'circle-stroke-color': '#ffffff'
+    }
+  });
+  
+  map.on('click', 'places', function (e) {
+
+    var coordinates = e.features[0].geometry.coordinates.slice();
+    var description = e.features[0].properties.description;
+
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360: - 360;
+    }
+
+    new mapboxgl.Popup()
+      .setLngLat(coordinates)
+      .setHTML(description)
+      .addTo(map);
+  });
+
+  map.on('mouseleave', 'places', function () {
+    map.getCanvas().style.cursor = 'pointer';
+  });
+
+  map.on('mouseleave', 'places', function() {
+    map.getCanvas().style.cursor = '';
+  });
+});
+</script>
+
+</body>
+</html>

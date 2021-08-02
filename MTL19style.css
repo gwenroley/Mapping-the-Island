@@ -1,0 +1,189 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content-method{
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 6px;
+    width: 80%;
+    overflow-y: auto;
+  }
+
+  .modal-content-housing{
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 6px;
+    width: 80%;
+    height: 75%;
+    overflow-y: auto;
+  }
+
+  .close{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  #titlecontainer {
+    position: relative;
+    font-family: 'Optima';
+    font-weight: 900;
+    font-variant: small-caps;
+    font-size: large;
+    }
+
+  #legend {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    position: absolute;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    border-radius: 6px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 12px;
+   }
+
+  #explainer {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    position: absolute;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    border-radius: 6px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 12px;
+   }
+
+   #methodology {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    position: absolute;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    border-radius: 6px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 12px;
+   }
+
+   #years {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    position: center;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    border-radius: 6px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 12px;
+   }
+
+   #key {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    border-radius: 6px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+   }
+
+dt {
+    background-color: blanchedalmond;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid #000;
+    }
+    
+    .red {background-color: red; color:red; }
+    .green {background-color: green; color:green; }
+    .yellow {background-color: yellow; color: yellow; }
+    .blue {background-color: blue; color:blue;}   
+
+    .rone {background-color: #ffe6e1; color: #ffe6e1;}
+    .rtwo {background-color: #fcc5c5; color: #fcc5c5;}
+    .rthree {background-color: #fa7070; color: #fa7070;}
+    .rfour {background-color: #fd3a3a; color: #fd3a3a;}
+    .rfive {background-color: #fd1c1c; color: #fd1c1c;}
+    .rsix {background-color: #d30303; color: #d30303;}
+    .rseven {background-color: #9c0202; color: #9c0202;}
+    .reight {background-color: #840b0b; color: #840b0b;}
+    .rnine {background-color: #661515; color: #661515;}
+    .rten {background-color: #692626; color: #692626;}
+    .releven {background-color: #391919; color: #391919;}
+
+    .vone {background-color: #ecfeeb; color: #ecfeeb;}
+    .vtwo {background-color: #c7fec3; color: #c7fec3;}
+    .vthree {background-color: #6dfe79; color: #6dfe79}
+    .vfour {background-color: #66fd21; color: #66fd21}
+    .vfive {background-color: #40c403; color: #40c403}
+    .vsix {background-color: #388d11; color: #388d11;}
+    .vseven {background-color: #3b6926; color: #3b6926;}
+    .veight {background-color: #345624; color: #345624;}
+
+    .rcone {background-color: #ffffff; color: #ffffff;}
+    .rctwo {background-color: #c8e6fe; color: #c8e6fe;}
+    .rcthree {background-color: #99befa; color: #99befa;}
+    .rcfour {background-color: #4795f5; color: #4795f5;}
+    .rcfive {background-color: #0761e9; color: #0761e9;}
+    .rcsix {background-color: #4242f5; color: #4242f5;}
+    .rcseven {background-color: #0a0db2; color: #0a0db2;}
+    .rceight {background-color: #060698; color: #060698;}
+    .rcnine {background-color: #040772; color: #040772;}
+
+    .vcone {background-color: #fcfcfc; color: #fcfcfc;}
+    .vctwo {background-color: #fafcc5; color: #fafcc5;}
+    .vcthree {background-color: #f7ef7e; color: #f7ef7e;}
+    .vcfour {background-color: #eae253; color: #eae253;}
+    .vcfive {background-color: #d5c707; color: #d5c707;}
+    .vcsix {background-color: #d1d10a; color: #d1d10a;}
+    .vcseven {background-color: #7e8005; color: #7e8005;}
+
+    dd {
+    display: inline-block;
+    margin: 0 0 0 0;
+    }
+
+
